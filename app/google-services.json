@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "618155062218",
+    "firebase_url": "https://praca-inz-77d89.firebaseio.com",
+    "project_id": "praca-inz-77d89",
+    "storage_bucket": "praca-inz-77d89.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:618155062218:android:77b973e7392e685daa1533",
+        "android_client_info": {
+          "package_name": "pl.edu.wat.ml_application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "618155062218-v592tmif0c71vr23f274pie4vgh8a81j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1I_Sr-fa8V8JdcUH_rUhxm5BIMIkzexU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "618155062218-v592tmif0c71vr23f274pie4vgh8a81j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ML_application</string>
+    <string name="ocr_instruction"></string>
+    <string name="translate_instruction"></string>
+    <string name="scanner_instruction"></string>
+    <string name="hcr_instruction"></string>
+    <string name="base_result_instruction"></string>
+    <string name="about_data"></string>
+</resources>

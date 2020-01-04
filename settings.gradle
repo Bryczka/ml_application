@@ -1,0 +1,4 @@
+include ':app'
+rootProject.name='ML_application'
+include ':java'
+include ':openCVLibrary347'
