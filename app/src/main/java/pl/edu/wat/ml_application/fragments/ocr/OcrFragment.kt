@@ -1,6 +1,8 @@
 package pl.edu.wat.ml_application.ui.fragments.ocr
 
+import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Bundle
@@ -20,6 +22,8 @@ import pl.edu.wat.ml_application.firebase.HCRRecognition
 import pl.edu.wat.ml_application.firebase.OcrRecognition
 import pl.edu.wat.ml_application.ui.fragments.baseResult.BaseResultFragment
 import pl.edu.wat.ml_application.utils.LoadImage
+import team.clevel.documentscanner.ImageCropActivity
+import team.clevel.documentscanner.helpers.ScannerConstants
 import java.io.File
 import java.io.IOException
 
@@ -48,8 +52,7 @@ class OcrFragment : Fragment() {
         }
 
         startFloatingButton.setOnClickListener {
-            //val hcrProcessor = HCRRecognition()
-            //hcrProcessor.recognize((selectedImageImageView.drawable as BitmapDrawable).bitmap)
+
             ocrProcessor.data.observe(this, Observer { onOcrResult(it) })
             if(selectedImageImageView.drawable != null)
             ocrProcessor.recognizeOCR((selectedImageImageView.drawable as BitmapDrawable).bitmap)
@@ -61,16 +64,28 @@ class OcrFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
         try {
             if (requestCode == LoadImage.galleryRequestCode) {
                 uri = data!!.data!!
+                /////
+                val scannerRequestCode = 4000
+                ScannerConstants.selectedImageBitmap=LoadImage.CreateBitmapFromUri.convert(uri, activity!!).copy(Bitmap.Config.ARGB_8888, true)
+                startActivityForResult(Intent(this.context, ImageCropActivity::class.java),scannerRequestCode)
+                ////
             } else if (requestCode == LoadImage.cameraRequestCode) {
                 uri = Uri.fromFile(File(LoadImage.uri))
+            }else if (requestCode==4000 && resultCode== Activity.RESULT_OK )
+            {
+                if (ScannerConstants.selectedImageBitmap!=null)
+                    selectedImageImageView.setImageBitmap(ScannerConstants.selectedImageBitmap)
+                else
+                    Toast.makeText(requireContext(),"Something wen't wrong.",Toast.LENGTH_LONG).show()
             }
         } catch (e: IOException) {
             e.printStackTrace()
         }
-        selectedImageImageView.setImageBitmap(LoadImage.CreateBitmapFromUri.convert(uri, activity!!))
+        //selectedImageImageView.setImageBitmap(LoadImage.CreateBitmapFromUri.convert(uri, activity!!))
     }
     
     override fun onActivityCreated(savedInstanceState: Bundle?) {

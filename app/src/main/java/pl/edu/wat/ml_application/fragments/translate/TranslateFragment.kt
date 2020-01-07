@@ -103,18 +103,22 @@ class TranslateFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         var uri : Uri = Uri.EMPTY
-
+        //var bitmap: Bitmap? = null
         try {
             if (requestCode == LoadImage.galleryRequestCode) {
                 uri = data!!.data!!
-                //bitmap = LoadImage.RotateBitmap.rotateImageIfRequired(bitmap!!, LoadImage.RotateBitmap.getRealPathFromURI(uri, this))
+                //bitmap = Bitmap.createBitmap(LoadImage.CreateBitmapFromUri.convert(uri, activity!!))
+                //bitmap.config = Bitmap.Config.ARGB_8888
+                //bitmap = Bitmap.createBitmap(LoadImage.RotateBitmap.rotateImageIfRequired(bitmap!!, LoadImage.RotateBitmap.getRealPathFromURI(uri, this)))
             } else if (requestCode == LoadImage.cameraRequestCode) {
                 uri = Uri.fromFile(File(LoadImage.uri))
+                //bitmap = Bitmap.createBitmap(LoadImage.CreateBitmapFromUri.convert(uri, activity!!))
                 //bitmap = LoadImage.RotateBitmap.rotateImageIfRequired(bitmap!!, uri.encodedPath!!)
             }
         } catch (e: IOException) {
             e.printStackTrace()
         }
+        //selectedImageImageView.setImageBitmap(bitmap)
         selectedImageImageView.setImageBitmap(LoadImage.CreateBitmapFromUri.convert(uri, activity!!))
     }
 

@@ -23,6 +23,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import pl.edu.wat.ml_application.R
 import pl.edu.wat.ml_application.firebase.OcrRecognition
 import pl.edu.wat.ml_application.ui.fragments.about.AboutFragment
+import pl.edu.wat.ml_application.ui.fragments.hcr.HcrFragment
 import pl.edu.wat.ml_application.ui.fragments.ocr.OcrFragment
 import pl.edu.wat.ml_application.ui.fragments.scan.ScanFragment
 import pl.edu.wat.ml_application.ui.fragments.translate.TranslateFragment
@@ -51,7 +52,7 @@ class MainFragment : Fragment() {
         val aboutButton = view.findViewById<Button>(R.id.aboutButton)
 
         hcrButton.setOnClickListener {
-
+            fragmentManager?.beginTransaction()!!.replace(R.id.container, HcrFragment.newInstance()).addToBackStack(null).commit()
         }
         ocrButton.setOnClickListener {
             fragmentManager?.beginTransaction()!!.replace(R.id.container, OcrFragment.newInstance()).addToBackStack(null).commit()
